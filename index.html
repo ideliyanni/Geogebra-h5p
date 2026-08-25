@@ -10,24 +10,53 @@
     html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
     }
 
-    .ggb-container {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
+    #container {
+      position: relative;
+      width: 1000px;
+      max-width: 100%;
+    }
+
+    #resetButton {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 1000;
+
+      width: 38px;
+      height: 38px;
+
+      border: none;
+      border-radius: 50%;
+      background: white;
+
+      font-size: 25px;
+      cursor: pointer;
+
+      box-shadow: 0 1px 5px rgba(0,0,0,0.25);
     }
   </style>
 </head>
 
 <body>
 
-<div class="ggb-container">
+<div id="container">
+
   <div id="ggb-element"></div>
+
+  <button id="resetButton"
+          title="Επαναφορά"
+          onclick="resetGeoGebra()">
+    ↻
+  </button>
+
 </div>
 
 <script>
+
+var ggbAPI = null;
+
 var params = {
   "appName": "classic",
   "material_id": "hbnt6teh",
@@ -35,17 +64,18 @@ var params = {
   "width": 1000,
   "height": 620,
 
-  "scaleContainerClass": "ggb-container",
-  "autoHeight": true,
-  "allowUpscale": false,
-
   "language": "el",
 
   "showAlgebraInput": true,
-  "showResetIcon": true,
+
+  "showResetIcon": false,
 
   "showToolBar": false,
-  "showMenuBar": false
+  "showMenuBar": false,
+
+  "appletOnLoad": function(api) {
+    ggbAPI = api;
+  }
 };
 
 var applet = new GGBApplet(params, true);
@@ -53,6 +83,13 @@ var applet = new GGBApplet(params, true);
 window.addEventListener("load", function() {
   applet.inject("ggb-element");
 });
+
+function resetGeoGebra() {
+  if (ggbAPI) {
+    ggbAPI.reset();
+  }
+}
+
 </script>
 
 </body>
