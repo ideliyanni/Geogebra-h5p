@@ -8,7 +8,7 @@
   <script src="https://www.geogebra.org/apps/deployggb.js"></script>
 </head>
 
-<body>
+<body style="margin:0; padding:0;">
 
 <div id="ggb-element"></div>
 
@@ -18,11 +18,18 @@ var params = {
   "material_id": "hbnt6teh",
   "width": 1000,
   "height": 620,
+
   "language": "el",
+
   "showAlgebraInput": true,
   "showResetIcon": true,
+
   "showToolBar": false,
-  "showMenuBar": false
+  "showMenuBar": false,
+
+  "appletOnLoad": function(api) {
+    api.showResetIcon(true);
+  }
 };
 
 var applet = new GGBApplet(params, true);
