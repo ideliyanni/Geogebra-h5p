@@ -3,21 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GeoGebra</title>
 
   <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .ggb-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 
-<body style="margin:0; padding:0;">
+<body>
 
-<div id="ggb-element"></div>
+<div class="ggb-container">
+  <div id="ggb-element"></div>
+</div>
 
 <script>
 var params = {
   "appName": "classic",
   "material_id": "hbnt6teh",
+
   "width": 1000,
   "height": 620,
+
+  "scaleContainerClass": "ggb-container",
+  "autoHeight": true,
+  "allowUpscale": false,
 
   "language": "el",
 
@@ -25,11 +45,7 @@ var params = {
   "showResetIcon": true,
 
   "showToolBar": false,
-  "showMenuBar": false,
-
-  "appletOnLoad": function(api) {
-    api.showResetIcon(true);
-  }
+  "showMenuBar": false
 };
 
 var applet = new GGBApplet(params, true);
